@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Height is set in code so the rows fill the screen -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvDay"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:gravity="top|center_horizontal"
+    android:paddingTop="6dp"
+    android:textSize="14sp" />
