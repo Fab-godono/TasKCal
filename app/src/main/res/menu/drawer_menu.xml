@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_month"
+            android:orderInCategory="1"
+            android:title="Month" />
+        <item
+            android:id="@+id/nav_year"
+            android:orderInCategory="2"
+            android:title="Year" />
+    </group>
+
+    <group android:id="@+id/group_extra">
+        <item
+            android:id="@+id/nav_themes"
+            android:orderInCategory="3"
+            android:title="Themes" />
+
+        <!-- Theme slots: hidden until "Themes" is tapped. Names are filled in
+             from the THEMES array in ThemeManager. Unused slots stay hidden.
+             (Need more than 8 themes? Add more items: theme_8, theme_9...) -->
+        <item android:id="@+id/theme_0" android:orderInCategory="4" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_1" android:orderInCategory="5" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_2" android:orderInCategory="6" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_3" android:orderInCategory="7" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_4" android:orderInCategory="8" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_5" android:orderInCategory="9" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_6" android:orderInCategory="10" android:visible="false" android:title="" />
+        <item android:id="@+id/theme_7" android:orderInCategory="11" android:visible="false" android:title="" />
+    </group>
+</menu>

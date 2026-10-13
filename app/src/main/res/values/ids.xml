@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ids for the two views (used to remember which one is open) -->
+    <item name="nav_month" type="id" />
+    <item name="nav_year" type="id" />
+</resources>
