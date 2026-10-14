@@ -1,4 +1,4 @@
-package it.unisa.taskcal; // <-- change to your own package name
+package it.unisa.taskcal;
 
 import androidx.lifecycle.ViewModel;
 

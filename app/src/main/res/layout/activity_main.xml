@@ -48,7 +48,7 @@
             android:paddingStart="16dp"
             android:paddingTop="8dp"
             android:paddingBottom="16dp"
-            android:text="TaskCal"
+            android:text="@string/app_name"
             android:textSize="24sp"
             android:textStyle="bold" />
 

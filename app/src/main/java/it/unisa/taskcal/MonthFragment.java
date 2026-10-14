@@ -1,8 +1,11 @@
 package it.unisa.taskcal;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,6 +42,17 @@ public class MonthFragment extends Fragment {
         rvDays = view.findViewById(R.id.rvDays);
         Button btnPrev = view.findViewById(R.id.btnPrev);
         Button btnNext = view.findViewById(R.id.btnNext);
+
+        // Weekday labels, Monday first (same order used by CalendarUtils.buildDays)
+        LinearLayout weekdayHeader = view.findViewById(R.id.weekdayHeader);
+        for (int i = 0; i < 7; i++) {
+            TextView label = new TextView(requireContext());
+            label.setLayoutParams(new LinearLayout.LayoutParams(
+                    0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+            label.setGravity(Gravity.CENTER);
+            label.setText(CalendarUtils.weekdayShort(DayOfWeek.MONDAY.plus(i)));
+            weekdayHeader.addView(label);
+        }
 
         ThemeManager.applyToViews(view, theme);
         rvDays.setLayoutManager(new GridLayoutManager(requireContext(), 7));

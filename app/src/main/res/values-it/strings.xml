@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TasKCal</string>
+    <string name="title_month">Mese</string>
+    <string name="title_year">Anno</string>
+    <string name="menu_themes">Temi</string>
+    <string name="action_today">Oggi</string>
+    <string name="cd_previous">Precedente</string>
+    <string name="cd_next">Successivo</string>
+</resources>

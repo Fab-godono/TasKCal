@@ -32,9 +32,18 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.DayViewHolder> {
         this.listener = listener;
     }
 
+    // Redraws only the two cells that change (old and new selection)
     public void setSelectedDate(LocalDate date) {
+        LocalDate old = this.selectedDate;
         this.selectedDate = date;
-        notifyDataSetChanged();
+        if (old == null) {
+            notifyDataSetChanged();
+            return;
+        }
+        int oldPos = days.indexOf(old);
+        int newPos = days.indexOf(date);
+        if (oldPos >= 0) notifyItemChanged(oldPos);
+        if (newPos >= 0 && newPos != oldPos) notifyItemChanged(newPos);
     }
 
     @NonNull

@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     // ---------------- burger menu ----------------
 
     private void buildNavMenu() {
-        navMonth = addNavRow(navList, "Month", v -> switchTo(R.id.nav_month));
-        navYear = addNavRow(navList, "Year", v -> switchTo(R.id.nav_year));
+        navMonth = addNavRow(navList, getString(R.string.title_month), v -> switchTo(R.id.nav_month));
+        navYear = addNavRow(navList, getString(R.string.title_year), v -> switchTo(R.id.nav_year));
 
         navThemes = addNavRow(navList, "", v -> {
             themesExpanded = !themesExpanded;
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Opens / closes the dropdown under "Themes"
     private void refreshThemeList() {
-        navThemes.setText(themesExpanded ? "Themes  \u25B4" : "Themes  \u25BE");
+        navThemes.setText(getString(R.string.menu_themes) + (themesExpanded ? "  \u25B4" : "  \u25BE"));
         themeList.removeAllViews();
         if (!themesExpanded) return;
 
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Toolbar title + highlighted menu row
     private void updateChrome(int id) {
-        toolbar.setTitle(id == R.id.nav_year ? "Year" : "Month");
+        toolbar.setTitle(id == R.id.nav_year ? R.string.title_year : R.string.title_month);
         styleNavRow(navMonth, id == R.id.nav_month);
         styleNavRow(navYear, id == R.id.nav_year);
     }
