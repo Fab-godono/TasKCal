@@ -1,5 +1,6 @@
-package it.unisa.taskcal; // <-- change to your own package name
+package it.unisa.taskcal;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -26,6 +27,11 @@ public class CalendarUtils {
             cells.add(null);
         }
         return cells;
+    }
+
+    // Short weekday label ("Mon" / "Lun"), in the device language like the month names
+    public static String weekdayShort(DayOfWeek d) {
+        return capitalize(d.getDisplayName(TextStyle.SHORT, Locale.getDefault()));
     }
 
     public static String monthName(YearMonth m) {

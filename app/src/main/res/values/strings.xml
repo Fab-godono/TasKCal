@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Taskcal</string>
+    <string name="app_name">TasKCal</string>
+    <string name="title_month">Month</string>
+    <string name="title_year">Year</string>
+    <string name="menu_themes">Themes</string>
+    <string name="action_today">Today</string>
+    <string name="cd_previous">Previous</string>
+    <string name="cd_next">Next</string>
 </resources>
