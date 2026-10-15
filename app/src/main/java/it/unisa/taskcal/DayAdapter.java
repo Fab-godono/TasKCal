@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.time.LocalDate;
 import java.util.List;
 
+import android.graphics.drawable.GradientDrawable;
+import java.util.HashSet;
+import java.util.Set;
+
 public class DayAdapter extends RecyclerView.Adapter<DayAdapter.DayViewHolder> {
 
     public interface OnDayClickListener {
@@ -23,6 +27,11 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.DayViewHolder> {
     private final ThemeManager.AppTheme theme;
     private final OnDayClickListener listener;
     private LocalDate selectedDate;
+    private Set<LocalDate> eventDays = new HashSet<>();
+    public void setEventDays(Set<LocalDate> eventDays) {
+        this.eventDays = eventDays;
+        notifyDataSetChanged();
+    }
 
     public DayAdapter(List<LocalDate> days, int rowHeight,
                       ThemeManager.AppTheme theme, OnDayClickListener listener) {
@@ -62,6 +71,7 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.DayViewHolder> {
         Context ctx = tv.getContext();
 
         if (date == null) {
+            tv.setCompoundDrawables(null, null, null, null);
             tv.setText("");
             tv.setBackground(null);
             tv.setOnClickListener(null);
@@ -83,6 +93,18 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.DayViewHolder> {
         } else {
             tv.setBackground(null);
             tv.setTextColor(theme.text);
+        }
+        // puntino sotto il numero se il giorno ha eventi
+        if (eventDays.contains(date)) {
+            int size = ThemeManager.dp(ctx, 6);
+            GradientDrawable dot = new GradientDrawable();
+            dot.setShape(GradientDrawable.OVAL);
+            dot.setColor(selected ? theme.onSelected : theme.primary);
+            dot.setBounds(0, 0, size, size);
+            tv.setCompoundDrawables(null, null, null, dot);
+            tv.setCompoundDrawablePadding(ThemeManager.dp(ctx, 3));
+        } else {
+            tv.setCompoundDrawables(null, null, null, null);
         }
     }
 

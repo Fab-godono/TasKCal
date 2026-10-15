@@ -19,6 +19,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
+import java.util.Set;
+
 // Full-screen month
 public class MonthFragment extends Fragment {
 
@@ -28,6 +30,7 @@ public class MonthFragment extends Fragment {
     private TextView tvMonthTitle;
     private RecyclerView rvDays;
     private DayAdapter adapter;
+    private Set<LocalDate> eventDays = new java.util.HashSet<>();
 
     public MonthFragment() {
         super(R.layout.fragment_month);
@@ -56,6 +59,7 @@ public class MonthFragment extends Fragment {
 
         ThemeManager.applyToViews(view, theme);
         rvDays.setLayoutManager(new GridLayoutManager(requireContext(), 7));
+        rvDays.setItemAnimator(null); // niente sfumatura quando cambia la selezione
 
         btnPrev.setOnClickListener(v -> {
             state.currentMonth = state.currentMonth.minusMonths(1);
@@ -66,10 +70,16 @@ public class MonthFragment extends Fragment {
             showMonth();
         });
 
+        state.getDaysWithEvents().observe(getViewLifecycleOwner(), days -> {
+            eventDays = days;
+            if (adapter != null) adapter.setEventDays(days);
+        });
+
         showMonth();
     }
 
     private void showMonth() {
+        state.loadEventsForMonth(state.currentMonth);
         tvMonthTitle.setText(CalendarUtils.monthTitle(state.currentMonth));
         List<LocalDate> days = CalendarUtils.buildDays(state.currentMonth);
 
@@ -83,8 +93,16 @@ public class MonthFragment extends Fragment {
                 state.selectedDate = date;
                 adapter.setSelectedDate(date);
             });
+            adapter.setEventDays(eventDays);
             adapter.setSelectedDate(state.selectedDate);
             rvDays.setAdapter(adapter);
         });
+    }
+
+    // Quando torni da "Nuovo evento", ricarica i puntini
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (state != null) state.loadEventsForMonth(state.currentMonth);
     }
 }

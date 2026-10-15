@@ -19,6 +19,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
+import android.content.Intent;
 import it.unisa.taskcal.data.Event;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,6 +52,18 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(theme.onPrimary);
         toolbar.setNavigationIconTint(theme.onPrimary);
         findViewById(R.id.navPanel).setBackgroundColor(theme.surface);
+
+        // ---- "+" button: opens the New event screen ----
+        com.google.android.material.floatingactionbutton.FloatingActionButton fab =
+                findViewById(R.id.fabAdd);
+        fab.setBackgroundTintList(ColorStateList.valueOf(theme.primary));
+        fab.setImageTintList(ColorStateList.valueOf(theme.onPrimary));
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddEventActivity.class);
+            intent.putExtra("date", state.selectedDate.toString()); // es. 2026-10-20
+            startActivity(intent);
+        });
+
         ((TextView) findViewById(R.id.navTitle)).setTextColor(theme.text);
 
         // ---- burger button opens the left menu ----
