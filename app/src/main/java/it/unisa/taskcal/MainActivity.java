@@ -19,6 +19,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 import java.time.LocalDate;
 import java.time.YearMonth;
 
+import it.unisa.taskcal.data.Event;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
